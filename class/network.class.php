@@ -210,12 +210,13 @@ class Network extends SeedObject
 
     /**
      * @param User $user User object
+     * @param bool $notrigger
      * @return int
      */
-    public function delete(User &$user)
+    public function delete(User &$user, $notrigger = false)
     {
         unset($this->fk_element); // avoid conflict with standard Dolibarr comportment
-        return parent::delete($user);
+        return parent::delete($user, $notrigger);
     }
 
     /**
