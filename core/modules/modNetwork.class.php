@@ -95,6 +95,7 @@ class modNetwork extends DolibarrModules
                 ,'groupcard'
             )
             ,'css' => array('/network/css/network.css')
+            ,'js' => array() // Nécessaire car n'était pas vide auparavant
         );
 
 		// Data directories to create when module is enabled.
