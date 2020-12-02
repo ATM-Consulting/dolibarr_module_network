@@ -1,3 +1,4 @@
+# en_US 
 Module104730Name = Network
 Module104730Desc = Network Description
 
@@ -5,3 +6,53 @@ ATMAbout = This module has been developed by <a href="http://www.atm-consulting.
 
 NetworkSetup = Network module setup
 NetworkAbout = About Network
+
+Network = Network
+AbricotNeedUpdate = Module Abricot need an update
+
+# SETUP
+ParamLabel = Label
+ParamDesc = Description
+ParamHelp = Help
+
+# CARD
+NetworkHowToUse = <b>How to use Network ?</b><br /><u>Step 1 :</u><br />Create a link title<br /><u>Step 2 :</u><br />Find the item to link, you can use up to 2 types of tags<br /><b>User / user group / company / contact :</b> prefixed by the character "@"<b><br />proposal / order / invoice... :</b> prefixed by the character "#"<br /><b>Everywhere :</b> without prefix
+NetworkPlaceHolderLink = Link ...
+NetworkPlaceHolderTarget = @Patrick... | #FA19... | Dupont...
+NetworkAddLink = Add link
+NetworkShowMore = show more...
+
+NetworkComfirmDelete = Delete ?
+
+network_success_create_comment = Comment successfully created
+network_success_delete_comment = Comment successfully deleted
+
+network_error_empty_target = Error : the target element is not filled in
+network_error_empty_source = Error : the source element is not filled in
+network_error_create_comment = Error : add failed (%s)
+network_error_delete_comment = Error : delete failed (%s)
+
+# TITLE AUTOCOMPLETE
+NetworkItemTitleUser = User
+NetworkItemTitleUserGroup = User Group
+NetworkItemTitleSociete = Society
+NetworkItemTitleContact = Contact
+NetworkItemTitlePropal = Commercial Proposal
+NetworkItemTitleCommande = Order
+NetworkItemTitleFacture = Invoice
+NetworkItemTitleSupplierProposal = Supplier Proposal
+NetworkItemTitleCommandeFournisseur = Supplier Order
+NetworkItemTitleFactureFournisseur = Supplier Invoice
+NetworkItemTitleProject = Project | Lead
+
+# MIGRATION
+RowsNotMigrated = Lines not migrated (%d lines)
+RowAlreadyMigrated = line already migrated previously
+SourceNotFound = source not found in database
+NoMatchForTag = target not found in database
+NoTagFound = Tag not found
+DatabaseError = Error Database
+MigrationFinished = Migration finished (%d lines migrated)
+SimulationFinished = Simulation finished (%d lines would have been migrated)
+TagAmbiguous = ambiguous tag
+Reason = Reason
