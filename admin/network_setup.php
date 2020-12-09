@@ -60,7 +60,7 @@ if (preg_match('/set_(.*)/', $action, $reg))
 		dol_print_error($db);
 	}
 }
-	
+
 if (preg_match('/del_(.*)/', $action, $reg))
 {
 	$code=$reg[1];
@@ -110,13 +110,8 @@ if(!function_exists('setup_print_title')){
 setup_print_title("Parameters");
 
 // Example with a yes / no select
-setup_print_on_off('CONSTNAME', $langs->trans('ParamLabel'), 'ParamDesc');
+setup_print_on_off('NETWORK_SHOW_POST', $langs->trans('NETWORK_SHOW_POST'));
 
-// Example with imput
-setup_print_input_form_part('CONSTNAME', $langs->trans('ParamLabel'));
-
-// Example with color
-setup_print_input_form_part('CONSTNAME', $langs->trans('ParamLabel'), 'ParamDesc', array('type'=>'color'), 'input', 'ParamHelp');
 
 // Example with placeholder
 //setup_print_input_form_part('CONSTNAME',$langs->trans('ParamLabel'),'ParamDesc',array('placeholder'=>'http://'),'input','ParamHelp');
