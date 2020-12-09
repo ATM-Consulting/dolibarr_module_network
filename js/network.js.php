@@ -180,6 +180,7 @@ if (!empty($user->rights->network->read)) {
                     }
 
                     $('#network-comments').append($comment);
+					$('#network-comments').trigger('change');
                 }
             }
         }
