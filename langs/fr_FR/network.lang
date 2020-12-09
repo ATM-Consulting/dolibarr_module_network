@@ -1,60 +1,59 @@
 Module104730Name = Network
 Module104730Desc = Module permettant de spécifier des relations diverses entre éléments (utilisateur, tiers, contact, proposition commerciale, etc)
 
-ATMAbout = Ce module a été développé par <a href="http://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Vous pouvez retrouver la documentation sur notre <a href="http://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>Pour toute question technique ou retour, contactez-nous sur <a href="mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Pour toute question commerciale, contactez-nous sur <a href="mailto:contact@atm-consulting.fr">contact@atm-consulting.fr</a> ou au +33 9 77 19 50 70<br><br>Retrouvez nos autres modules sur <a href="http://www.dolistore.com/search.php?orderby=position&orderway=desc&search_query=atm&submit_search=Rechercher" target="_blank">Dolistore</a>
+ATMAbout = Ce module a été développé par <a href="https://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Vous pouvez retrouver la documentation sur notre <a href="http://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>Pour toute question technique ou retour, contactez-nous sur <a href="mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Pour toute question commerciale, contactez-nous sur <a href="mailto:contact@atm-consulting.fr">contact@atm-consulting.fr</a> ou au +33 9 77 19 50 70<br><br>Retrouvez nos autres modules sur <a href="http://www.dolistore.com/search.php?orderby=position&orderway=desc&search_query=atm&submit_search=Rechercher" target="_blank">Dolistore</a>
 
 NetworkSetup = Configuration du module Network
 NetworkAbout = A propos du module Network
 
-Network=Network
-AbricotNeedUpdate=Le module abricot doit être mis à jour
+Network = Network
+AbricotNeedUpdate = Le module abricot doit être mis à jour
 
 # SETUP
-ParamLabel=Nom du paramètre
-ParamDesc=Une description si besoin
-ParamHelp=Le contenu de l'aide
+ParamLabel = Nom du paramètre
+ParamDesc = Une description si besoin
+ParamHelp = Le contenu de l'aide
 
 # CARD
-NetworkHowToUse=<b>Comment utiliser Network ?</b><br /><u>Étape 1 :</u><br />Donnez un intitulé de liaison<br /><u>Étape 2 :</u><br />Recherchez l'élément à lier, vous pouvez utiliser jusqu'à 2 types de tags<br /><b>Utilisateur/groupe d'utilisateur/société/contact :</b> préfixé par le caractère "@"<b><br />Devis/commande/facture... :</b> préfixé par le caractère "#"<br /><b>De partout :</b> sans préfix
-NetworkPlaceHolderLink=Lien...
-NetworkPlaceHolderTarget=@Patrick... | #FA19... | Dupont...
-NetworkAddLink=Ajouter le lien
-NetworkShowMore=Voir plus...
+NetworkHowToUse = <b>Comment utiliser Network ?</b><br /><u>Étape 1 :</u><br />Donnez un intitulé de liaison<br /><u>Étape 2 :</u><br />Recherchez l'élément à lier, vous pouvez utiliser jusqu'à 2 types de tags<br /><b>Utilisateur/groupe d'utilisateur/société/contact :</b> préfixé par le caractère "@"<b><br />Devis/commande/facture... :</b> préfixé par le caractère "#"<br /><b>De partout :</b> sans préfix
+NetworkPlaceHolderLink = Lien...
+NetworkPlaceHolderTarget = @Patrick... | #FA19... | Dupont...
+NetworkAddLink = Ajouter le lien
+NetworkShowMore = Voir plus...
 
-NetworkComfirmDelete=Êtes-vous sûr ?
+NetworkComfirmDelete = Êtes-vous sûr ?
 
-network_success_create_comment=Ajout du commentaire avec succès
-network_success_delete_comment=Commentaire supprimé avec succès
+network_success_create_comment = Ajout du commentaire avec succès
+network_success_delete_comment = Commentaire supprimé avec succès
 
-network_error_empty_target=Erreur : l'élément cible n'est pas renseigné
-network_error_empty_source=Erreur : l'élément source n'est pas renseigné
-network_error_create_comment=Erreur : échec de l'ajout (%s)
-network_error_delete_comment=Erreur : échec de la suppression (%s)
+network_error_empty_target = Erreur : l'élément cible n'est pas renseigné
+network_error_empty_source = Erreur : l'élément source n'est pas renseigné
+network_error_create_comment = Erreur : échec de l'ajout (%s)
+network_error_delete_comment = Erreur : échec de la suppression (%s)
 
 # TITLE AUTOCOMPLETE
-NetworkItemTitleUser=Utilisateurs
-NetworkItemTitleUserGroup=Groupes d'utilisateurs
-NetworkItemTitleSociete=Sociétés
-NetworkItemTitleContact=Contacts
-NetworkItemTitlePropal=Propositions commerciales
-NetworkItemTitleCommande=Commandes
-NetworkItemTitleFacture=Factures
-NetworkItemTitleSupplierProposal=Demandes de prix fournisseur
-NetworkItemTitleCommandeFournisseur=Commandes fournisseur
-NetworkItemTitleFactureFournisseur=Factures fournisseur
-NetworkItemTitleProject=Opportunités | Projets
+NetworkItemTitleUser = Utilisateurs
+NetworkItemTitleUserGroup = Groupes d'utilisateurs
+NetworkItemTitleSociete = Sociétés
+NetworkItemTitleContact = Contacts
+NetworkItemTitlePropal = Propositions commerciales
+NetworkItemTitleCommande = Commandes
+NetworkItemTitleFacture = Factures
+NetworkItemTitleSupplierProposal = Demandes de prix fournisseur
+NetworkItemTitleCommandeFournisseur = Commandes fournisseur
+NetworkItemTitleFactureFournisseur = Factures fournisseur
+NetworkItemTitleProject = Opportunités | Projets
 
 # MIGRATION
-RowsNotMigrated=Lignes non migrées (%d lignes)
-RowAlreadyMigrated=ligne déjà migrée précédemment
-SourceNotFound=source introuvable en base
-NoMatchForTag=cible introuvable en base
-SourceNotFound=source introuvable en base
-NoTagFound=Aucun tag dans le commentaire
-DatabaseError=Erreur de base de données
-MigrationFinished=Migration terminée (%d lignes migrées)
-SimulationFinished=Simulation terminée (%d lignes auraient été migrées)
-TagAmbiguous=tag ambigu
-Reason=Raison
-
+RowsNotMigrated = Lignes non migrées (%d lignes)
+RowAlreadyMigrated = ligne déjà migrée précédemment
+SourceNotFound = source introuvable en base
+NoMatchForTag = cible introuvable en base
+SourceNotFound = source introuvable en base
+NoTagFound = Aucun tag dans le commentaire
+DatabaseError = Erreur de base de données
+MigrationFinished = Migration terminée (%d lignes migrées)
+SimulationFinished = Simulation terminée (%d lignes auraient été migrées)
+TagAmbiguous = tag ambigu
+Reason = Raison
 NETWORK_SHOW_POST=Afficher le poste sur les contacts
