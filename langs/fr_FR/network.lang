@@ -56,3 +56,4 @@ MigrationFinished = Migration terminée (%d lignes migrées)
 SimulationFinished = Simulation terminée (%d lignes auraient été migrées)
 TagAmbiguous = tag ambigu
 Reason = Raison
+NETWORK_SHOW_POST=Afficher le poste sur les contacts

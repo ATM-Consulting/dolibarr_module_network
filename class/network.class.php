@@ -478,7 +478,7 @@ class Network extends SeedObject
      */
     private static function getStaticCommentsByElement($db, $fk_element, $elementtype, $type = 'source', $start = 0, $limit = 10)
     {
-        global $langs;
+        global $langs, $conf;
 
         $TCom = array();
 
@@ -523,6 +523,7 @@ class Network extends SeedObject
                 if ($res > 0)
                 {
                     if (empty($obj->link)) $obj->link = '&ndash;';
+                    if(!empty($conf->global->NETWORK_SHOW_POST) && $o->element == 'contact') $obj->poste = $o->poste;
 
                     if(method_exists($o, 'getNomUrl'))
                     {
