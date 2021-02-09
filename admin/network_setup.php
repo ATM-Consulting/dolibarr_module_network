@@ -112,6 +112,8 @@ setup_print_title("Parameters");
 // Example with a yes / no select
 setup_print_on_off('NETWORK_SHOW_POST', $langs->trans('NETWORK_SHOW_POST'));
 
+setup_print_on_off('NETWORK_SHOW_SOCIETE_CONTACT', $langs->trans('NETWORK_SHOW_SOCIETE_CONTACT'));
+
 
 // Example with placeholder
 //setup_print_input_form_part('CONSTNAME',$langs->trans('ParamLabel'),'ParamDesc',array('placeholder'=>'http://'),'input','ParamHelp');
