@@ -265,7 +265,7 @@ class Network extends SeedObject
 		return $object->getNomUrl($withpicto, $moreparams);
     }
 
-    public function getSearchResult($queryString)
+    public function getSearchResult($queryString, $TExclude)
     {
         global $conf, $langs;
 
@@ -413,6 +413,9 @@ class Network extends SeedObject
             $last_title = null;
             while ($obj = $this->db->fetch_object($resql))
             {
+
+            	if(in_array($obj->rowid, $TExclude)) continue;			//si l'objet récupéré fait parti du tableau d'exclusion, on le traite pas
+
                 if ($last_title === null || $last_title != 'NetworkItemTitle'.$obj->type)
                 {
                     $last_title = 'NetworkItemTitle'.$obj->type;
@@ -422,10 +425,23 @@ class Network extends SeedObject
                     );
                 }
 
+                //si l'objet traité est un contact, on ajoute l'information de sa société
+                if($obj->type == "Contact") {
+
+					$contact = new Contact($this->db);
+					$res = $contact->fetch($obj->rowid);
+
+                	if($res >0 && $contact->socid) {
+                		$soc = new Societe($this->db);
+                		$res = $soc->fetch($contact->socid);
+                		if($res > 0) $socname = $soc->name;
+                	}
+				}
+
                 $TRes[] = array(
                     'key' => $obj->rowid.'-'.$obj->type
                     ,'value' => trim($obj->label)
-                    ,'label' => trim($obj->label)
+                    ,'label' => !empty($socname) ? trim($obj->label .' ('.$socname.') ') : trim($obj->label)
                 );
             }
         }
