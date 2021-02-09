@@ -118,6 +118,10 @@
     background-color: #9A3BF9;
 }
 
+#network-comments .network-badge-poste {
+    background-color: #FF6400;
+}
+
 #network-comments .network_badge.user, #network-comments .network_badge.usergroup {
     background-color: #3C70A4;
 }

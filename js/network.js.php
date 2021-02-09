@@ -156,7 +156,7 @@ if (!empty($user->rights->network->read)) {
                     $comment.append('<span class="rel badge network_badge network-badge-link">'+data[i].link+'</span>');
 
                     $comment.append(data[i].url);
-					if(data[i].poste != undefined) $comment.append('<span class="rel badge network_badge network-badge-link">'+data[i].poste+'</span>');
+					if(data[i].poste != undefined) $comment.append('<span class="rel badge network_badge network-badge-poste">'+data[i].poste+'</span>');
                     <?php
                     if (!empty($user->rights->network->delete)) {
                     ?>
