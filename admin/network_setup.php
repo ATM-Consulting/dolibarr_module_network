@@ -112,7 +112,7 @@ setup_print_title("Parameters");
 // Example with a yes / no select
 setup_print_on_off('NETWORK_SHOW_POST', $langs->trans('NETWORK_SHOW_POST'));
 
-setup_print_on_off('NETWORK_SHOW_SOCIETE_CONTACT', $langs->trans('NETWORK_SHOW_SOCIETE_CONTACT'));
+setup_print_on_off('NETWORK_HIDE_SOCIETE_CONTACT', $langs->trans('NETWORK_HIDE_SOCIETE_CONTACT'));
 
 
 // Example with placeholder

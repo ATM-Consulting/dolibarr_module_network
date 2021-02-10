@@ -426,7 +426,7 @@ class Network extends SeedObject
                 }
 
                 //si l'objet traité est un contact, on ajoute l'information de sa société
-                if($obj->type == "Contact" && $conf->global->NETWORK_SHOW_SOCIETE_CONTACT) {
+                if($obj->type == "Contact" && empty($conf->global->NETWORK_SHOW_SOCIETE_CONTACT)) {
 
 					$contact = new Contact($this->db);
 					$res = $contact->fetch($obj->rowid);
