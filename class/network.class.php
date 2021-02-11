@@ -265,6 +265,11 @@ class Network extends SeedObject
 		return $object->getNomUrl($withpicto, $moreparams);
     }
 
+	/**
+	 * @param $queryString
+	 * @param array $TExclude
+	 * @return array
+	 */
     public function getSearchResult($queryString, $TExclude = array())
     {
         global $conf, $langs;

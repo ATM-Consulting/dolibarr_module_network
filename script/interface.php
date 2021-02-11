@@ -33,7 +33,7 @@ switch ($action) {
     	$TExclude = array();
     	$TExclude[] = GETPOST('fk_source', 'int');
 
-    	__out($object->getSearchResult(GETPOST('network_target', 'string'), $TExclude));
+    	__out($object->getSearchResult(GETPOST('network_target', 'alphanohtml'), $TExclude));
         break;
 
     case 'getComments':
