@@ -31,9 +31,9 @@ switch ($action) {
     case 'search':
     	//on exclue de la liste de recherches de liens network le contact courent
     	$TExclude = array();
-    	$TExclude[] = GETPOST('fk_source');
+    	$TExclude[] = GETPOST('fk_source', 'int');
 
-        __out($object->getSearchResult(GETPOST('network_target'), $TExclude));
+    	__out($object->getSearchResult(GETPOST('network_target', 'string'), $TExclude));
         break;
 
     case 'getComments':

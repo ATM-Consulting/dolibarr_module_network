@@ -265,7 +265,7 @@ class Network extends SeedObject
 		return $object->getNomUrl($withpicto, $moreparams);
     }
 
-    public function getSearchResult($queryString, $TExclude)
+    public function getSearchResult($queryString, $TExclude = array())
     {
         global $conf, $langs;
 
@@ -414,7 +414,7 @@ class Network extends SeedObject
             while ($obj = $this->db->fetch_object($resql))
             {
 
-            	if(in_array($obj->rowid, $TExclude)) continue;			//si l'objet récupéré fait parti du tableau d'exclusion, on le traite pas
+            	if(!empty($TExclude) && in_array($obj->rowid, $TExclude)) continue;			//si l'objet récupéré fait parti du tableau d'exclusion, on le traite pas
 
                 if ($last_title === null || $last_title != 'NetworkItemTitle'.$obj->type)
                 {
@@ -426,7 +426,7 @@ class Network extends SeedObject
                 }
 
                 //si l'objet traité est un contact, on ajoute l'information de sa société
-                if($obj->type == "Contact" && empty($conf->global->NETWORK_SHOW_SOCIETE_CONTACT)) {
+                if($obj->type == "Contact" && empty($conf->global->NETWORK_HIDE_SOCIETE_CONTACT)) {
 
 					$contact = new Contact($this->db);
 					$res = $contact->fetch($obj->rowid);

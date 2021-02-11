@@ -1,4 +1,0 @@
-v3.1 (9 feb. 2021)
-=====================
-- Conf "NETWORK_SHOW_SOCIETE_CONTACT" : Added contact's soc name in network search list
-- Exclude current contact to network search list
