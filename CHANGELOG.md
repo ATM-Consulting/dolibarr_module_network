@@ -10,4 +10,5 @@ Version 3.1 (2021-02-09)
 #Changed
 
 - FIX Exclude current contact to network search list
+- FIX Poste Badge orange color
 
