@@ -13,6 +13,8 @@ AbricotNeedUpdate = Le module abricot doit être mis à jour
 ParamLabel = Nom du paramètre
 ParamDesc = Une description si besoin
 ParamHelp = Le contenu de l'aide
+NETWORK_SHOW_POST=Afficher le poste sur les contacts
+NETWORK_HIDE_SOCIETE_CONTACT=Cacher la société du contact dans la recherche de liens network
 
 # CARD
 NetworkHowToUse = <b>Comment utiliser Network ?</b><br /><u>Étape 1 :</u><br />Donnez un intitulé de liaison<br /><u>Étape 2 :</u><br />Recherchez l'élément à lier, vous pouvez utiliser jusqu'à 2 types de tags<br /><b>Utilisateur/groupe d'utilisateur/société/contact :</b> préfixé par le caractère "@"<b><br />Devis/commande/facture... :</b> préfixé par le caractère "#"<br /><b>De partout :</b> sans préfix
@@ -56,4 +58,3 @@ MigrationFinished = Migration terminée (%d lignes migrées)
 SimulationFinished = Simulation terminée (%d lignes auraient été migrées)
 TagAmbiguous = tag ambigu
 Reason = Raison
-NETWORK_SHOW_POST=Afficher le poste sur les contacts

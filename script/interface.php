@@ -29,7 +29,11 @@ $object = new Network($db);
 
 switch ($action) {
     case 'search':
-        __out($object->getSearchResult(GETPOST('network_target')));
+    	//on exclue de la liste de recherches de liens network le contact courent
+    	$TExclude = array();
+    	$TExclude[] = GETPOST('fk_source', 'int');
+
+    	__out($object->getSearchResult(GETPOST('network_target', 'alphanohtml'), $TExclude));
         break;
 
     case 'getComments':
