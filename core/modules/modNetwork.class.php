@@ -96,6 +96,7 @@ class modNetwork extends DolibarrModules
             )
             ,'css' => array('/network/css/network.css')
             ,'js' => array() // Nécessaire car n'était pas vide auparavant
+			, 'triggers' => 1 // Pour supprimer les liens à la suppression des objets
         );
 
 		// Data directories to create when module is enabled.
