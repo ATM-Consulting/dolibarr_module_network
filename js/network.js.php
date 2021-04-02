@@ -23,6 +23,7 @@ $langs->load('network@network');
 
 $fk_source = (int) GETPOST('fk_source');
 $sourcetype = GETPOST('sourcetype');
+header('Content-Type: text/javascript');
 ?>
 
 $(document).ready(function() {
