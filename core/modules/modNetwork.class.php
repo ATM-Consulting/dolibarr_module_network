@@ -60,7 +60,7 @@ class modNetwork extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = $langs->trans('Module900000092Desc');
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
-		$this->version = '3.1.1';
+		$this->version = '3.2.0';
 		// Key used in llx_const table to save module status enabled/disabled (where NETWORK is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Where to store the module in setup page (0=common,1=interface,2=others,3=very specific)
@@ -96,6 +96,7 @@ class modNetwork extends DolibarrModules
             )
             ,'css' => array('/network/css/network.css')
             ,'js' => array() // Nécessaire car n'était pas vide auparavant
+			, 'triggers' => 1 // Pour supprimer les liens à la suppression des objets
         );
 
 		// Data directories to create when module is enabled.
