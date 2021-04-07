@@ -4,7 +4,7 @@
 
 ### Version 3.1
 
-- FIX : Compatibility Dolibarr V13
+- FIX : Compatibility Dolibarr V13 *07/04/2021* - 3.1.1
 - NEW : Conf "NETWORK_HIDE_SOCIETE_CONTACT" : Added contact's soc name in network search list if empty conf *09/02/2021* - 3.1.0
 - FIX : Exclude current contact to network search list
 - FIX : Poste Badge orange color
