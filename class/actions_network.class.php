@@ -92,7 +92,7 @@ class ActionsNetwork
         global $langs, $user;
 
 
-        if (!empty($this->currentObject->id))
+        if (!empty($this->currentObject->id) && (!empty($user->rights->network->write) || !empty($user->rights->network->read)))
         {
             $langs->load('network@network');
 
