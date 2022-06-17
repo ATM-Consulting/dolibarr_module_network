@@ -100,6 +100,8 @@ class ActionsNetwork
             <div id="network-container" class="tabBar">
             <?php
 
+			$newToken = function_exists('newToken') ? newToken() : $_SESSION['newtoken'];
+
             if (!empty($user->rights->network->write))
             {
             ?>
@@ -119,6 +121,7 @@ class ActionsNetwork
 
                     </div>
                     <div id="network-add-comment" rel="add_comment" class="login_block_elem">
+						<input type="hidden" name="token" id="token" value="<?php echo $newToken; ?>">
                         <input type="button" name="btcomment" class="button butAction" value="<?php echo $langs->trans('NetworkAddLink'); ?>">
                     </div>
 

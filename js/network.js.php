@@ -23,8 +23,10 @@ dol_include_once('/network/class/network.class.php');
 
 $langs->load('network@network');
 
-$fk_source = (int) GETPOST('fk_source');
-$sourcetype = GETPOST('sourcetype');
+$fk_source = (int) GETPOST('fk_source', 'int');
+$sourcetype = GETPOST('sourcetype', 'none');
+$newToken = function_exists('newToken') ? newToken() : $_SESSION['newtoken'];
+
 header('Content-Type: text/javascript');
 ?>
 
@@ -83,7 +85,7 @@ $(document).ready(function() {
             var target = $('#network-writer input[name=network_target]').val();
 
             $.ajax({
-                url: '<?php echo dol_buildpath('/network/script/interface.php', 1); ?>'
+                url: '<?php echo dol_buildpath('/network/script/interface.php?token='.$newToken, 1); ?>'
                 , dataType: "JSON"
                 , data: {
                     action: "addComment"
@@ -123,7 +125,7 @@ if (!empty($user->rights->network->read)) {
         if (!limit) limit = 10;
 
         $.ajax({
-            url: '<?php echo dol_buildpath('/network/script/interface.php', 1) ?>'
+            url: '<?php echo dol_buildpath('/network/script/interface.php?token='.$newToken, 1) ?>'
             , dataType: 'JSON'
             , data: {
                 action: "getComments"
@@ -198,7 +200,7 @@ if (!empty($user->rights->network->delete)) {
     function networkRemoveComment(commid) {
         if (window.confirm("<?php echo dol_escape_js($langs->transnoentitiesnoconv('NetworkComfirmDelete')) ?>")) {
             $.ajax({
-                url: '<?php echo dol_buildpath('/network/script/interface.php', 1); ?>'
+                url: '<?php echo dol_buildpath('/network/script/interface.php?token='.$newToken, 1); ?>'
                 , dataType: "JSON"
                 , data: {
                     action: "deleteComment"
