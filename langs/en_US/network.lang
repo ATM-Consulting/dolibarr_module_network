@@ -5,3 +5,55 @@ ATMAbout = This module has been developed by <a href="http://www.atm-consulting.
 
 NetworkSetup = Network module setup
 NetworkAbout = About Network
+
+Network = Network
+AbricotNeedUpdate = the module "abricot" must be updated
+
+# SETUP
+ParamLabel = Nom du paramètre
+ParamDesc = Une description si besoin
+ParamHelp = Le contenu de l'aide
+NETWORK_SHOW_POST=Show job position for contacts
+NETWORK_HIDE_SOCIETE_CONTACT=Hide thirdparty of the contact in link search
+
+# CARD
+NetworkHowToUse = <b>How to use Network ?</b><br /><u>Step 1 :</u><br />Give a label for the link<br /><u>Step 2 :</u><br />Search the element to link. You can use 2 types of tag<br /><b>User/User group/thirdparty/contact :</b> prefixed by "@" character<b><br />Proposal/order/invoice... :</b> prefixed by "#" character<br /><b>Everywhere :</b> without prefix
+NetworkPlaceHolderLink = Link...
+NetworkPlaceHolderTarget = @Patrick... | #FA19... | Dupont...
+NetworkAddLink = Add the link
+NetworkShowMore = Show more...
+
+NetworkComfirmDelete = Are you sure ?
+
+network_success_create_comment = Comment added successfully
+network_success_delete_comment = Comment deleted successfully
+
+network_error_empty_target = Error : target element missing
+network_error_empty_source = Error : source element missing
+network_error_create_comment = Error : add fail (%s)
+network_error_delete_comment = Erreur : delete fail (%s)
+
+# TITLE AUTOCOMPLETE
+NetworkItemTitleUser = Users
+NetworkItemTitleUserGroup = User groups
+NetworkItemTitleSociete = Thirdparties
+NetworkItemTitleContact = Contacts
+NetworkItemTitlePropal = Commercial proposals
+NetworkItemTitleCommande = Orders
+NetworkItemTitleFacture = Invoices
+NetworkItemTitleSupplierProposal = Vendor proposals
+NetworkItemTitleCommandeFournisseur = Purchase orders
+NetworkItemTitleFactureFournisseur = Vendor invoices
+NetworkItemTitleProject = Projects
+
+# MIGRATION
+RowsNotMigrated = Lines not migrated (%d lines)
+RowAlreadyMigrated = line already migrated before
+SourceNotFound = source not found in database
+NoMatchForTag = target not found in database
+NoTagFound = No tag in the comment
+DatabaseError = Database error
+MigrationFinished = Migration finished (%d lines migrated)
+SimulationFinished = Simulation finished (%d lines would have been migrated)
+TagAmbiguous = Ambiguoustag
+Reason = Reason
