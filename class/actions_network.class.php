@@ -89,7 +89,7 @@ class ActionsNetwork
      */
     public function printCommonFooter($parameters, &$object, &$action, $hookmanager)
     {
-        global $langs, $user;
+        global $langs, $user, $form;
 
 
         if (!empty($this->currentObject->id) && (!empty($user->rights->network->write) || !empty($user->rights->network->read)))
@@ -108,7 +108,7 @@ class ActionsNetwork
                 <div id="network-panel">
                     <div id="network-header" rel="header" class="login_block_elem">
                         <img src="<?php echo dol_buildpath('/network/img/network.png', 1); ?>" border="0" align="absmiddle" />
-                        &nbsp;<?php echo Form::textwithtooltip('<b>'.$langs->trans('Network').'</b>', $langs->trans('NetworkHowToUse'), 2, 1, '<span class="fa fa-question-circle" aria-hidden="true"></span>', 'networkHelp', 2); ?>
+                        &nbsp;<?php echo $form->textwithtooltip('<b>'.$langs->trans('Network').'</b>', $langs->trans('NetworkHowToUse'), 2, 1, '<span class="fa fa-question-circle" aria-hidden="true"></span>', 'networkHelp', 2); ?>
                     </div>
                     <div id="network-current-object" rel="current_object" class="login_block_elem center nowrap tdoverflowmax300"><b><?php echo $this->currentObject->getNomUrl(1); ?> : </b></div>
                     <div id="network-writer" rel="writer" class="login_block_elem">
@@ -148,13 +148,13 @@ class ActionsNetwork
 
     function printTopRightMenu($parameters, &$object, &$action, $hookmanager)
     {
-        global $user,$langs;
+        global $user,$langs, $form;
 
         if (empty($user->rights->network->read)) return 0;
 
         $langs->load('network@network');
         $text = '<a id="network_block_other" href="'. dol_buildpath('network/list.php', 1).'"><span class="fa fa-hashtag atoplogin" aria-hidden="true"></span></a>';
-        $hookmanager->resPrint.= Form::textwithtooltip('', $langs->trans("networkToolTip"), 2, 1, $text, 'network_block_other', 2);
+        $hookmanager->resPrint.= $form->textwithtooltip('', $langs->trans("networkToolTip"), 2, 1, $text, 'network_block_other', 2);
 
         return 0;
     }
