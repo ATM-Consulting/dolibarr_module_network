@@ -148,9 +148,13 @@ class ActionsNetwork
 
     function printTopRightMenu($parameters, &$object, &$action, $hookmanager)
     {
-        global $user,$langs, $form;
+        global $user,$langs, $form, $db;
 
         if (empty($user->rights->network->read)) return 0;
+
+		if(!is_callable(array($form, 'textwithtooltip'))){
+			$form = new Form($db);
+		}
 
         $langs->load('network@network');
         $text = '<a id="network_block_other" href="'. dol_buildpath('network/list.php', 1).'"><span class="fa fa-hashtag atoplogin" aria-hidden="true"></span></a>';
