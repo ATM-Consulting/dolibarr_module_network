@@ -4,6 +4,7 @@
 
 ### Version 3.2
 
+- FIX : Missing fr trad *18/11/2022* - 3.2.5
 - FIX : Fatal error $form not instanced *10/08/2022* - 3.2.4
 - FIX : Icon *09/08/2022* - 3.2.3
 - FIX : Fix editor name and fatal due to static call of a non-static method *02/08/2022* - 3.2.2
