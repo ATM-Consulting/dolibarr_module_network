@@ -58,3 +58,7 @@ MigrationFinished = Migration terminée (%d lignes migrées)
 SimulationFinished = Simulation terminée (%d lignes auraient été migrées)
 TagAmbiguous = tag ambigu
 Reason = Raison
+
+network_read = Voir les liens
+network_write = Créer/modifier les liens
+network_delete = Supprimer les liens
