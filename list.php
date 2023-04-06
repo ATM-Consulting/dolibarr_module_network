@@ -54,7 +54,7 @@ if (!GETPOST('confirmmassaction', 'alpha') && $massaction != 'presend' && $massa
 
 if (empty($reshook))
 {
-    // do action from GETPOST ... 
+    // do action from GETPOST ...
 }
 
 
