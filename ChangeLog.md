@@ -3,7 +3,7 @@
 ### Unreleased
 
 ### Version 3.2
-
+- FIX : Ajout inclusion bom class dans la class netowrk (getion des liaison sur bom )  - *06/04/2023* - 3.2.6  
 - FIX : Missing fr trad *18/11/2022* - 3.2.5
 - FIX : Fatal error $form not instanced *10/08/2022* - 3.2.4
 - FIX : Icon *09/08/2022* - 3.2.3
