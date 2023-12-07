@@ -22,11 +22,12 @@
  * \brief   This file is an example hook overload class file
  *          Put some comments here
  */
+require_once __DIR__ . '/../backport/v19/core/class/commonhookactions.class.php';
 
 /**
  * Class ActionsNetwork
  */
-class ActionsNetwork
+class ActionsNetwork extends \network\RetroCompatCommonHookActions
 {
     /**
      * @var DoliDb		Database handler (result of a new DoliDB)
@@ -92,7 +93,7 @@ class ActionsNetwork
         global $langs, $user, $form;
 
 
-        if (!empty($this->currentObject->id) && (!empty($user->rights->network->write) || !empty($user->rights->network->read)))
+        if (!empty($this->currentObject->id) && ($user->hasRight('network', 'write') || $user->hasRight('network', 'read')))
         {
             $langs->load('network@network');
 
@@ -102,7 +103,7 @@ class ActionsNetwork
 
 			$newToken = function_exists('newToken') ? newToken() : $_SESSION['newtoken'];
 
-            if (!empty($user->rights->network->write))
+            if ($user->hasRight('network', 'write'))
             {
             ?>
                 <div id="network-panel">
@@ -130,7 +131,7 @@ class ActionsNetwork
             <?php
             }
 
-            if (!empty($user->rights->network->read))
+            if ($user->hasRight('network', 'read'))
             {
             ?>
                 <script type="text/javascript" src="<?php echo dol_buildpath('/network/js/network.js.php?fk_source='.$this->currentObject->id.'&sourcetype='.get_class($this->currentObject), 1); ?>"></script>
@@ -150,7 +151,7 @@ class ActionsNetwork
     {
         global $user,$langs, $form, $db;
 
-        if (empty($user->rights->network->read)) return 0;
+        if (!$user->hasRight('network', 'read')) return 0;
 
 		if(!is_callable(array($form, 'textwithtooltip'))){
 			$form = new Form($db);

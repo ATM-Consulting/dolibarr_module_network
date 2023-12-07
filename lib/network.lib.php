@@ -98,37 +98,37 @@ function getFormConfirmNetwork($form, $object, $action)
 
     $formconfirm = '';
 
-    if ($action === 'valid' && !empty($user->rights->network->write))
+    if ($action === 'valid' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmValidateNetworkBody', $object->ref);
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmValidateNetworkTitle'), $body, 'confirm_validate', '', 0, 1);
     }
-    elseif ($action === 'accept' && !empty($user->rights->network->write))
+    elseif ($action === 'accept' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmAcceptNetworkBody', $object->ref);
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmAcceptNetworkTitle'), $body, 'confirm_accept', '', 0, 1);
     }
-    elseif ($action === 'refuse' && !empty($user->rights->network->write))
+    elseif ($action === 'refuse' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmRefuseNetworkBody', $object->ref);
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmRefuseNetworkTitle'), $body, 'confirm_refuse', '', 0, 1);
     }
-    elseif ($action === 'reopen' && !empty($user->rights->network->write))
+    elseif ($action === 'reopen' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmReopenNetworkBody', $object->ref);
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmReopenNetworkTitle'), $body, 'confirm_refuse', '', 0, 1);
     }
-    elseif ($action === 'delete' && !empty($user->rights->network->write))
+    elseif ($action === 'delete' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmDeleteNetworkBody');
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmDeleteNetworkTitle'), $body, 'confirm_delete', '', 0, 1);
     }
-    elseif ($action === 'clone' && !empty($user->rights->network->write))
+    elseif ($action === 'clone' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmCloneNetworkBody', $object->ref);
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmCloneNetworkTitle'), $body, 'confirm_clone', '', 0, 1);
     }
-    elseif ($action === 'cancel' && !empty($user->rights->network->write))
+    elseif ($action === 'cancel' && $user->hasRight('network', 'write'))
     {
         $body = $langs->trans('ConfirmCancelNetworkBody', $object->ref);
         $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ConfirmCancelNetworkTitle'), $body, 'confirm_cancel', '', 0, 1);

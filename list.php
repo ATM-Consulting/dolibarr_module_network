@@ -18,7 +18,7 @@
 require 'config.php';
 dol_include_once('network/class/network.class.php');
 
-if(empty($user->rights->network->read)) accessforbidden();
+if(!$user->hasRight('network', 'read')) accessforbidden();
 
 $langs->load('abricot@abricot');
 $langs->load('network@network');
@@ -103,7 +103,7 @@ $sql.=$hookmanager->resPrint;
 
 $formcore = new TFormCore($_SERVER['PHP_SELF'], 'form_list_network', 'GET');
 
-$nbLine = !empty($user->conf->MAIN_SIZE_LISTE_LIMIT) ? $user->conf->MAIN_SIZE_LISTE_LIMIT : $conf->global->MAIN_SIZE_LISTE_LIMIT;
+$nbLine = !empty($user->conf->MAIN_SIZE_LISTE_LIMIT) ? $user->conf->MAIN_SIZE_LISTE_LIMIT : getDolGlobalString('MAIN_SIZE_LISTE_LIMIT');
 //echo $sql;exit;
 $r = new Listview($db, 'network');
 echo $r->render($sql, array(
