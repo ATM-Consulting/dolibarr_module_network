@@ -1,6 +1,9 @@
 # Network - ChangeLog
 
 ### Unreleased
+- NEW : Compat V19 et php 8.2 *08/12/2023* - 3.3.0  
+  Changed Dolibarr compatibility range to 15 min - 19 max  
+  Change PHP compatibility range to 7.0 min - 8.2 max
 
 ### Version 3.2
 - FIX : Ajout inclusion bom class dans la class netowrk (getion des liaison sur bom )  - *06/04/2023* - 3.2.6  

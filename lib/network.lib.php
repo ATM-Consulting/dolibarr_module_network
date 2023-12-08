@@ -28,7 +28,7 @@
  */
 function networkAdminPrepareHead()
 {
-    global $langs, $conf;
+    global $langs, $conf, $object;
 
     $langs->load('network@network');
 
