@@ -60,7 +60,7 @@ class modNetwork extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = $langs->trans('Module900000092Desc');
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
-		$this->version = '3.3.0';
+		$this->version = '3.4.0';
 		// Key used in llx_const table to save module status enabled/disabled (where NETWORK is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Where to store the module in setup page (0=common,1=interface,2=others,3=very specific)
@@ -69,6 +69,12 @@ class modNetwork extends DolibarrModules
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
 		$this->picto='network.svg@network';
+
+
+		// Url to the file with your last numberversion of this module
+		require_once __DIR__ . '/../../class/techatm.class.php';
+		$this->url_last_version = \network\TechATM::getLastModuleVersionUrl($this);
+
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
 		// for default path (eg: /network/core/xxxxx) (0=disable, 1=enable)
