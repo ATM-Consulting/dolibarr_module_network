@@ -391,7 +391,7 @@ class Network extends SeedObject
             $sql.= '( SELECT rowid, '.$Tab['select'].', \''.$Tab['type'].'\' AS type FROM '.MAIN_DB_PREFIX.$table;
             if ($Tab['entity'])
             {
-                if (!empty($conf->multicompany->enabled) && !empty($Tab['multicompany_element'])) $sql.= ' WHERE entity IN ('.getEntity($Tab['multicompany_element']).')';
+                if (isModEnabled('multicompany') && !empty($Tab['multicompany_element'])) $sql.= ' WHERE entity IN ('.getEntity($Tab['multicompany_element']).')';
                 else $sql.= ' WHERE entity = '.$conf->entity;
             }
             else $sql.= ' WHERE 1';
