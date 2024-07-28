@@ -113,10 +113,10 @@ class ActionsNetwork extends \network\RetroCompatCommonHookActions
                     </div>
                     <div id="network-current-object" rel="current_object" class="login_block_elem center nowrap tdoverflowmax300"><b><?php echo $this->currentObject->getNomUrl(1); ?> : </b></div>
                     <div id="network-writer" rel="writer" class="login_block_elem">
-                        <?php echo ajax_autocompleter('', 'network_link', dol_buildpath('/network/script/interface.php', 1), '&action=getLinks&json=1', 2, 0, array()); ?>
+                        <?php echo ajax_autocompleter('', 'network_link', dol_buildpath('/network/script/interface.php', 1), '&action=getLinks&token='.$newToken.'&json=1', 2, 0, array()); ?>
                         <input type="text" class="" name="search_network_link" id="search_network_link" value="" placeholder="<?php echo $langs->trans('NetworkPlaceHolderLink'); ?>" />
 
-                        <?php echo ajax_autocompleter('', 'network_target', dol_buildpath('/network/script/interface.php', 1), '&action=search&json=1&fk_source='.$this->currentObject->id.'&sourcetype='.get_class($this->currentObject), 2, 0, array()); ?>
+                        <?php echo ajax_autocompleter('', 'network_target', dol_buildpath('/network/script/interface.php', 1), '&action=search&token='.$newToken.'&json=1&fk_source='.$this->currentObject->id.'&sourcetype='.get_class($this->currentObject), 2, 0, array()); ?>
                         <style type="text/css">.ui-autocomplete { z-index: 250; }</style>
                         <input type="text" class="" name="search_network_target" id="search_network_target" value="" placeholder="<?php echo $langs->trans('NetworkPlaceHolderTarget'); ?>" />
 
