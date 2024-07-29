@@ -4,6 +4,11 @@
 
 
 
+### Release 3.5
+
+- FIX: Compat v20  
+  Changed Dolibarr compatibility range to 16 min - 20 max - *28/07/2024* - 3.5.0
+
 ### Release 3.3
 
 - NEW : TechATM + page about 3.4.0
