@@ -65,7 +65,7 @@ if (empty($reshook))
 llxHeader('', $langs->trans('NetworkList'), '', '');
 
 //$type = GETPOST('type');
-//if (empty($user->rights->network->all->read)) $type = 'mine';
+//if (!$user->hasRight("network", "all", "read")) $type = 'mine';
 
 // TODO ajouter les champs de son objet que l'on souhaite afficher
 $keys = array_keys($object->fields);
