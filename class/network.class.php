@@ -331,8 +331,8 @@ class Network extends SeedObject
                     ,'type' => 'Commande' // Représente le nom de la class
                 )
                 ,'facture' =>  array(
-                    'select' => ((int) DOL_VERSION < 9.0) ? 'facnumber AS label' : 'ref AS label'
-                    ,'fields' => ((int) DOL_VERSION < 9.0) ? array('facnumber') : array('ref')
+                    'select' => 'ref AS label'
+                    ,'fields' => array('ref')
                     ,'use_natural_search' => true
                     ,'entity' => true
                     ,'multicompany_element' => 'facture'

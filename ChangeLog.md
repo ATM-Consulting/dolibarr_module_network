@@ -3,6 +3,7 @@
 ### Unreleased
 
 ### Release 3.5
+- FIX: Compat v21 - *11/12/2024* - 3.5.1
 - FIX: Compat v20  
   Changed Dolibarr compatibility range to 16 min - 20 max - *28/07/2024* - 3.5.0
 
