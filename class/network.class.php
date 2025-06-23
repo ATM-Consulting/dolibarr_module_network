@@ -284,7 +284,7 @@ class Network extends SeedObject
         $TTableSearchAvailable = array(
             '@' => array(
                 'user' => array(
-                    'select' => empty($conf->global->MAIN_FIRSTNAME_NAME_POSITION) ? 'CONCAT((CASE WHEN lastname IS NULL THEN \'\' ELSE lastname END), \' \', (CASE WHEN firstname IS NULL THEN \'\' ELSE firstname END)) AS label' : 'CONCAT(firstname, lastname) AS label'
+                    'select' => !getDolGlobalString('MAIN_FIRSTNAME_NAME_POSITION') ? 'CONCAT((CASE WHEN lastname IS NULL THEN \'\' ELSE lastname END), \' \', (CASE WHEN firstname IS NULL THEN \'\' ELSE firstname END)) AS label' : 'CONCAT(firstname, lastname) AS label'
                     ,'fields' => array('lastname', 'firstname')
                     ,'use_natural_search' => true
                     ,'entity' => true
@@ -306,7 +306,7 @@ class Network extends SeedObject
                     ,'type' => 'Societe' // Représente le nom de la class
                 )
                 ,'socpeople' => array(
-                    'select' => empty($conf->global->MAIN_FIRSTNAME_NAME_POSITION) ? 'CONCAT((CASE WHEN lastname IS NULL THEN \'\' ELSE lastname END), \' \', (CASE WHEN firstname IS NULL THEN \'\' ELSE firstname END)) AS label' : 'CONCAT((CASE WHEN firstname IS NULL THEN \'\' ELSE firstname END), \' \', (CASE WHEN lastname IS NULL THEN \'\' ELSE lastname END)) AS label'
+                    'select' => !getDolGlobalString('MAIN_FIRSTNAME_NAME_POSITION') ? 'CONCAT((CASE WHEN lastname IS NULL THEN \'\' ELSE lastname END), \' \', (CASE WHEN firstname IS NULL THEN \'\' ELSE firstname END)) AS label' : 'CONCAT((CASE WHEN firstname IS NULL THEN \'\' ELSE firstname END), \' \', (CASE WHEN lastname IS NULL THEN \'\' ELSE lastname END)) AS label'
                     ,'fields' => array('lastname', 'firstname')
                     ,'use_natural_search' => true
                     ,'entity' => true
@@ -331,8 +331,8 @@ class Network extends SeedObject
                     ,'type' => 'Commande' // Représente le nom de la class
                 )
                 ,'facture' =>  array(
-                    'select' => ((int) DOL_VERSION < 9.0) ? 'facnumber AS label' : 'ref AS label'
-                    ,'fields' => ((int) DOL_VERSION < 9.0) ? array('facnumber') : array('ref')
+                    'select' => 'ref AS label'
+                    ,'fields' => array('ref')
                     ,'use_natural_search' => true
                     ,'entity' => true
                     ,'multicompany_element' => 'facture'
@@ -391,7 +391,7 @@ class Network extends SeedObject
             $sql.= '( SELECT rowid, '.$Tab['select'].', \''.$Tab['type'].'\' AS type FROM '.MAIN_DB_PREFIX.$table;
             if ($Tab['entity'])
             {
-                if (!empty($conf->multicompany->enabled) && !empty($Tab['multicompany_element'])) $sql.= ' WHERE entity IN ('.getEntity($Tab['multicompany_element']).')';
+                if (isModEnabled('multicompany') && !empty($Tab['multicompany_element'])) $sql.= ' WHERE entity IN ('.getEntity($Tab['multicompany_element']).')';
                 else $sql.= ' WHERE entity = '.$conf->entity;
             }
             else $sql.= ' WHERE 1';
@@ -432,7 +432,7 @@ class Network extends SeedObject
                 }
 
                 //si l'objet traité est un contact, on ajoute l'information de sa société
-                if($obj->type == "Contact" && empty($conf->global->NETWORK_HIDE_SOCIETE_CONTACT)) {
+                if($obj->type == "Contact" && !getDolGlobalString('NETWORK_HIDE_SOCIETE_CONTACT')) {
 
 					$contact = new Contact($this->db);
 					$res = $contact->fetch($obj->rowid);
@@ -545,7 +545,7 @@ class Network extends SeedObject
                 if ($res > 0)
                 {
                     if (empty($obj->link)) $obj->link = '&ndash;';
-                    if(!empty($conf->global->NETWORK_SHOW_POST) && $o->element == 'contact') $obj->poste = $o->poste;
+                    if(getDolGlobalString('NETWORK_SHOW_POST') && $o->element == 'contact') $obj->poste = $o->poste;
 
                     if(method_exists($o, 'getNomUrl'))
                     {

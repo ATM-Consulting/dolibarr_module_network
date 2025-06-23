@@ -36,7 +36,7 @@ $(document).ready(function() {
     $('#network-container').appendTo('#id-right');
 
 	<?php
-    if (!empty($user->rights->network->write)) {
+    if ($user->hasRight('network', 'write')) {
     ?>
         $("input#search_network_target").autocomplete('option', 'select', function( event, ui ) {		// Function ran once new value has been selected into javascript combo
             console.log("select triggered from Network module");
@@ -109,7 +109,7 @@ $(document).ready(function() {
 	?>
 
     <?php
-    if (!empty($user->rights->network->read)) {
+    if ($user->hasRight('network', 'read')) {
     ?>
         NetworkLoadComment();
     <?php
@@ -118,7 +118,7 @@ $(document).ready(function() {
 });
 
 <?php
-if (!empty($user->rights->network->read)) {
+if ($user->hasRight('network', 'read')) {
 ?>
     function NetworkLoadComment(start, limit) {
         if (!start) start = 0;
@@ -163,7 +163,7 @@ if (!empty($user->rights->network->read)) {
                     $comment.append(data[i].url);
 					if(data[i].poste) $comment.append('<span class="rel badge network_badge network-badge-poste">'+data[i].poste+'</span>');
                     <?php
-                    if (!empty($user->rights->network->delete)) {
+                    if ($user->hasRight('network', 'delete')) {
                     ?>
                         $comment.append('<div class="delete"><a href="javascript:networkRemoveComment('+data[i].rowid+')"><?php echo img_delete(); ?></a></div>');
                     <?php
@@ -195,7 +195,7 @@ if (!empty($user->rights->network->read)) {
 ?>
 
 <?php
-if (!empty($user->rights->network->delete)) {
+if ($user->hasRight('network', 'delete')) {
 ?>
     function networkRemoveComment(commid) {
         if (window.confirm("<?php echo dol_escape_js($langs->transnoentitiesnoconv('NetworkComfirmDelete')) ?>")) {

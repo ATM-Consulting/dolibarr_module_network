@@ -60,7 +60,7 @@ class modNetwork extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = $langs->trans('Module900000092Desc');
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
-		$this->version = '3.2.7';
+		$this->version = '3.5.2';
 		// Key used in llx_const table to save module status enabled/disabled (where NETWORK is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Where to store the module in setup page (0=common,1=interface,2=others,3=very specific)
@@ -69,6 +69,12 @@ class modNetwork extends DolibarrModules
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
 		$this->picto='network.svg@network';
+
+
+		// Url to the file with your last numberversion of this module
+		require_once __DIR__ . '/../../class/techatm.class.php';
+		$this->url_last_version = \network\TechATM::getLastModuleVersionUrl($this);
+
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
 		// for default path (eg: /network/core/xxxxx) (0=disable, 1=enable)
@@ -87,7 +93,7 @@ class modNetwork extends DolibarrModules
 	 	//							'js' => array('/network/js/network.js'),          // Set this to relative path of js file if module must load a js on all pages
 		//							'hooks' => array('hookcontext1','hookcontext2')  	// Set here all hooks context managed by module
 		//							'dir' => array('output' => 'othermodulename'),      // To force the default directories names
-		//							'workflow' => array('WORKFLOW_MODULE1_YOURACTIONTYPE_MODULE2'=>array('enabled'=>'! empty($conf->module1->enabled) && ! empty($conf->module2->enabled)', 'picto'=>'yourpicto@network')) // Set here all workflow context managed by module
+		//							'workflow' => array('WORKFLOW_MODULE1_YOURACTIONTYPE_MODULE2'=>array('enabled'=>'isModEnabled("module1") && isModEnabled("module2")', 'picto'=>'yourpicto@network')) // Set here all workflow context managed by module
 		//                        );
 		$this->module_parts = array(
             'hooks' => array(
@@ -111,8 +117,8 @@ class modNetwork extends DolibarrModules
 		$this->depends = array();		// List of modules id that must be enabled if this module is enabled
 		$this->requiredby = array();	// List of modules id to disable if this one is disabled
 		$this->conflictwith = array();	// List of modules id this module is in conflict with
-		$this->phpmin = array(5,0);					// Minimum version of PHP required by module
-		$this->need_dolibarr_version = array(3,0);	// Minimum version of Dolibarr required by module
+		$this->phpmin = array(7,0);					// Minimum version of PHP required by module
+		$this->need_dolibarr_version = array(16,0);	// Minimum version of Dolibarr required by module
 		$this->langfiles = array("network@network");
 
 		// Constants
@@ -149,14 +155,14 @@ class modNetwork extends DolibarrModules
         $this->tabs = array();
 
         // Dictionaries
-	    if (! isset($conf->network->enabled))
+	    if (!isModEnabled('network'))
         {
         	$conf->network=new stdClass();
         	$conf->network->enabled=0;
         }
 		$this->dictionaries=array();
         /* Example:
-        if (! isset($conf->network->enabled)) $conf->network->enabled=0;	// This is to avoid warnings
+        if (! isModEnabled("network")) $conf->network->enabled=0;	// This is to avoid warnings
         $this->dictionaries=array(
             'langs'=>'network@network',
             'tabname'=>array(MAIN_DB_PREFIX."table1",MAIN_DB_PREFIX."table2",MAIN_DB_PREFIX."table3"),		// List of tables we want to see into dictonnary editor
@@ -167,7 +173,7 @@ class modNetwork extends DolibarrModules
             'tabfieldvalue'=>array("code,label","code,label","code,label"),																				// List of fields (list of fields to edit a record)
             'tabfieldinsert'=>array("code,label","code,label","code,label"),																			// List of fields (list of fields for insert)
             'tabrowid'=>array("rowid","rowid","rowid"),																									// Name of columns with primary key (try to always name it 'rowid')
-            'tabcond'=>array($conf->network->enabled,$conf->network->enabled,$conf->network->enabled)												// Condition to show each dictionary
+            'tabcond'=>array(isModEnabled("network"),isModEnabled("network"),isModEnabled("network"))												// Condition to show each dictionary
         );
         */
 
@@ -186,29 +192,29 @@ class modNetwork extends DolibarrModules
 		// $this->rights[$r][0] = $this->numero . $r;	// Permission id (must not be already used)
 		// $this->rights[$r][1] = 'Permision label';	// Permission label
 		// $this->rights[$r][3] = 1; 					// Permission by default for new user (0/1)
-		// $this->rights[$r][4] = 'level1';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
-		// $this->rights[$r][5] = 'level2';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
+		// $this->rights[$r][4] = 'level1';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
+		// $this->rights[$r][5] = 'level2';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
 		// $r++;
 
 		$this->rights[$r][0] = $this->numero . $r;	// Permission id (must not be already used)
 		$this->rights[$r][1] = 'network_read';	// Permission label
 		$this->rights[$r][3] = 0; 					// Permission by default for new user (0/1)
-		$this->rights[$r][4] = 'read';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
-		$this->rights[$r][5] = '';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
+		$this->rights[$r][4] = 'read';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
+		$this->rights[$r][5] = '';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
 		$r++;
 
 		$this->rights[$r][0] = $this->numero . $r;	// Permission id (must not be already used)
 		$this->rights[$r][1] = 'network_write';	// Permission label
 		$this->rights[$r][3] = 0; 					// Permission by default for new user (0/1)
-		$this->rights[$r][4] = 'write';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
-		$this->rights[$r][5] = '';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
+		$this->rights[$r][4] = 'write';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
+		$this->rights[$r][5] = '';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
 		$r++;
 
 		$this->rights[$r][0] = $this->numero . $r;	// Permission id (must not be already used)
 		$this->rights[$r][1] = 'network_delete';	// Permission label
 		$this->rights[$r][3] = 0; 					// Permission by default for new user (0/1)
-		$this->rights[$r][4] = 'delete';		    // In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
-		$this->rights[$r][5] = '';				// In php code, permission will be checked by test if ($user->rights->permkey->level1->level2)
+		$this->rights[$r][4] = 'delete';		    // In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
+		$this->rights[$r][5] = '';				// In php code, permission will be checked by test if ($user->hasRight("permkey", "level1", "level2"))
 		$r++;
 
 		// Main menu entries
@@ -226,8 +232,8 @@ class modNetwork extends DolibarrModules
 		//							'url'=>'/network/pagetop.php',
 		//							'langs'=>'network@network',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 		//							'position'=>100,
-		//							'enabled'=>'$conf->network->enabled',	// Define condition to show or hide menu entry. Use '$conf->network->enabled' if entry must be visible if module is enabled.
-		//							'perms'=>'1',			                // Use 'perms'=>'$user->rights->network->level1->level2' if you want your menu with a permission rules
+		//							'enabled'=>'isModEnabled("network")',	// Define condition to show or hide menu entry. Use 'isModEnabled("network")' if entry must be visible if module is enabled.
+		//							'perms'=>'1',			                // Use 'perms'=>'$user->hasRight("network", "level1", "level2")' if you want your menu with a permission rules
 		//							'target'=>'',
 		//							'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
 		// $r++;
@@ -242,7 +248,7 @@ class modNetwork extends DolibarrModules
 		//							'langs'=>'network@network',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 		//							'position'=>100,
 		//							'enabled'=>'$conf->network->enabled',  // Define condition to show or hide menu entry. Use '$conf->network->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-		//							'perms'=>'1',			                // Use 'perms'=>'$user->rights->network->level1->level2' if you want your menu with a permission rules
+		//							'perms'=>'1',			                // Use 'perms'=>'$user->hasRight("network", "level1", "level2")' if you want your menu with a permission rules
 		//							'target'=>'',
 		//							'user'=>2);				                // 0=Menu for internal users, 1=external users, 2=both
 		// $r++;
@@ -257,8 +263,8 @@ class modNetwork extends DolibarrModules
 			'url'=>'/network/list.php',
 			'langs'=>'network@network',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>100+$r,
-			'enabled'=>'$conf->network->enabled',	// Define condition to show or hide menu entry. Use '$conf->missionorder->enabled' if entry must be visible if module is enabled.
-			'perms'=>'$user->rights->network->read',			                // Use 'perms'=>'$user->rights->missionorder->level1->level2' if you want your menu with a permission rules
+			'enabled'=>'isModEnabled("network")',	// Define condition to show or hide menu entry. Use 'isModEnabled("missionorder")' if entry must be visible if module is enabled.
+			'perms'=>'$user->rights->network->read',			                // Use 'perms'=>'$user->hasRight("missionorder", "level1", "level2")' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>0
 		);
@@ -273,8 +279,8 @@ class modNetwork extends DolibarrModules
 			'url'=>'/network/list.php',
 			'langs'=>'network@network',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>100+$r,
-			'enabled'=>'$conf->network->enabled',	// Define condition to show or hide menu entry. Use '$conf->missionorder->enabled' if entry must be visible if module is enabled.
-			'perms'=>'$user->rights->network->read',			                // Use 'perms'=>'$user->rights->missionorder->level1->level2' if you want your menu with a permission rules
+			'enabled'=>'isModEnabled("network")',	// Define condition to show or hide menu entry. Use 'isModEnabled("missionorder")' if entry must be visible if module is enabled.
+			'perms'=>'$user->rights->network->read',			                // Use 'perms'=>'$user->hasRight("missionorder", "level1", "level2")' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>0
 		);
@@ -290,7 +296,7 @@ class modNetwork extends DolibarrModules
 			'langs'=>'network@network',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>100+$r,
 			'enabled'=> '$conf->network->enabled',  // Define condition to show or hide menu entry. Use '$conf->missionorder->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-			'perms'=> '$user->rights->network->write',			                // Use 'perms'=>'$user->rights->missionorder->level1->level2' if you want your menu with a permission rules
+			'perms'=> '$user->rights->network->write',			                // Use 'perms'=>'$user->hasRight("missionorder", "level1", "level2")' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>0
 		);				                // 0=Menu for internal users, 1=external users, 2=both
@@ -307,7 +313,7 @@ class modNetwork extends DolibarrModules
 			'langs'=>'network@network',	        // Lang file to use (without .lang) by module. File must be in langs/code_CODE/ directory.
 			'position'=>100+$r,
 			'enabled'=> '$conf->network->enabled',  // Define condition to show or hide menu entry. Use '$conf->missionorder->enabled' if entry must be visible if module is enabled. Use '$leftmenu==\'system\'' to show if leftmenu system is selected.
-			'perms'=> '$user->rights->network->write',			                // Use 'perms'=>'$user->rights->missionorder->level1->level2' if you want your menu with a permission rules
+			'perms'=> '$user->rights->network->write',			                // Use 'perms'=>'$user->hasRight("missionorder", "level1", "level2")' if you want your menu with a permission rules
 			'target'=>'',
 			'user'=>0
 		);				                // 0=Menu for internal users, 1=external users, 2=both

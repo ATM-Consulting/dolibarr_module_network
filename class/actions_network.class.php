@@ -22,11 +22,12 @@
  * \brief   This file is an example hook overload class file
  *          Put some comments here
  */
+require_once __DIR__ . '/../backport/v19/core/class/commonhookactions.class.php';
 
 /**
  * Class ActionsNetwork
  */
-class ActionsNetwork
+class ActionsNetwork extends \network\RetroCompatCommonHookActions
 {
     /**
      * @var DoliDb		Database handler (result of a new DoliDB)
@@ -92,7 +93,7 @@ class ActionsNetwork
         global $langs, $user, $form;
 
 
-        if (!empty($this->currentObject->id) && (!empty($user->rights->network->write) || !empty($user->rights->network->read)))
+        if (!empty($this->currentObject->id) && ($user->hasRight('network', 'write') || $user->hasRight('network', 'read')))
         {
             $langs->load('network@network');
 
@@ -102,7 +103,7 @@ class ActionsNetwork
 
 			$newToken = function_exists('newToken') ? newToken() : $_SESSION['newtoken'];
 
-            if (!empty($user->rights->network->write))
+            if ($user->hasRight('network', 'write'))
             {
             ?>
                 <div id="network-panel">
@@ -112,10 +113,10 @@ class ActionsNetwork
                     </div>
                     <div id="network-current-object" rel="current_object" class="login_block_elem center nowrap tdoverflowmax300"><b><?php echo $this->currentObject->getNomUrl(1); ?> : </b></div>
                     <div id="network-writer" rel="writer" class="login_block_elem">
-                        <?php echo ajax_autocompleter('', 'network_link', dol_buildpath('/network/script/interface.php', 1), '&action=getLinks&json=1', 2, 0, array()); ?>
+                        <?php echo ajax_autocompleter('', 'network_link', dol_buildpath('/network/script/interface.php', 1), '&action=getLinks&token='.$newToken.'&json=1', 2, 0, array()); ?>
                         <input type="text" class="" name="search_network_link" id="search_network_link" value="" placeholder="<?php echo $langs->trans('NetworkPlaceHolderLink'); ?>" />
 
-                        <?php echo ajax_autocompleter('', 'network_target', dol_buildpath('/network/script/interface.php', 1), '&action=search&json=1&fk_source='.$this->currentObject->id.'&sourcetype='.get_class($this->currentObject), 2, 0, array()); ?>
+                        <?php echo ajax_autocompleter('', 'network_target', dol_buildpath('/network/script/interface.php', 1), '&action=search&token='.$newToken.'&json=1&fk_source='.$this->currentObject->id.'&sourcetype='.get_class($this->currentObject), 2, 0, array()); ?>
                         <style type="text/css">.ui-autocomplete { z-index: 250; }</style>
                         <input type="text" class="" name="search_network_target" id="search_network_target" value="" placeholder="<?php echo $langs->trans('NetworkPlaceHolderTarget'); ?>" />
 
@@ -130,7 +131,7 @@ class ActionsNetwork
             <?php
             }
 
-            if (!empty($user->rights->network->read))
+            if ($user->hasRight('network', 'read'))
             {
             ?>
                 <script type="text/javascript" src="<?php echo dol_buildpath('/network/js/network.js.php?fk_source='.$this->currentObject->id.'&sourcetype='.get_class($this->currentObject), 1); ?>"></script>
@@ -150,7 +151,7 @@ class ActionsNetwork
     {
         global $user,$langs, $form, $db;
 
-        if (empty($user->rights->network->read)) return 0;
+        if (!$user->hasRight('network', 'read')) return 0;
 
 		if(!is_callable(array($form, 'textwithtooltip'))){
 			$form = new Form($db);
