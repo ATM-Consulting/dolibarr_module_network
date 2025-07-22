@@ -35,7 +35,7 @@ class ActionsNetwork extends \network\RetroCompatCommonHookActions
     public $db;
 
 	/**
-	 * @var array Hook results. Propagated to $hookmanager->resArray for later reuse
+	 * @var array Hook results. Propagated to $this->results for later reuse
 	 */
 	public $results = array();
 
@@ -159,7 +159,7 @@ class ActionsNetwork extends \network\RetroCompatCommonHookActions
 
         $langs->load('network@network');
         $text = '<a id="network_block_other" href="'. dol_buildpath('network/list.php', 1).'"><span class="fa fa-hashtag atoplogin" aria-hidden="true"></span></a>';
-        $hookmanager->resPrint.= $form->textwithtooltip('', $langs->trans("networkToolTip"), 2, 1, $text, 'network_block_other', 2);
+        $this->resprints.= $form->textwithtooltip('', $langs->trans("networkToolTip"), 2, 1, $text, 'network_block_other', 2);
 
         return 0;
     }
